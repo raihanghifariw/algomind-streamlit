@@ -27,7 +27,7 @@ def detect_objects(image, model):
 
     # Perform inference
     results = model(img_array)
-    # Get detection results
+
     # Render the detected results on the image
     results_img = np.squeeze(results.render())
 
