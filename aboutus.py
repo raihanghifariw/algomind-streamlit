@@ -1,12 +1,8 @@
 from PIL import Image
 import streamlit as st
 import json
+import time
 
-def load_team_members():
-    # Membaca data anggota tim dari file JSON
-    with open("team_members.json", "r") as file:
-        team_members = json.load(file)
-    return team_members
 
 def show():
     st.title("About Us")
@@ -38,16 +34,36 @@ def show():
         },
     ]
 
-    # Slider untuk menampilkan anggota tim
-    member_names = [member['name'] for member in team_members]
-    selected_member = st.selectbox("Select a team member:", member_names)
+    # Fungsi untuk menampilkan halaman About Us
 
-    # Menampilkan informasi tentang anggota yang dipilih
-    for member in team_members:
-        if member['name'] == selected_member:
-            # st.image(member['image'], caption=member['name'],
-            #          use_column_width=True)
-            st.write(member['description'])
+    st.title("About Us")
+    st.write(
+        "We are a team of three dedicated individuals working on the YOLO Object Detection project. "
+        "Our mission is to provide an efficient and user-friendly application for real-time object detection."
+    )
+
+    st.header("Meet Our Team")
+
+    # Interval waktu dalam detik untuk rotasi otomatis
+    rotation_interval = 5
+
+    # Dapatkan indeks anggota tim saat ini berdasarkan waktu
+    current_index = int(time.time() // rotation_interval) % len(team_members)
+    current_member = team_members[current_index]
+
+    # Menampilkan informasi anggota tim saat ini
+    st.image(current_member['image'],
+             caption=current_member['name'], use_column_width=True)
+    st.subheader(current_member['name'])
+    st.write(current_member['description'])
+
+    # Footer
+    st.write(
+        "Thank you for visiting our page. We are excited to share our work with you!")
+
+
+    # Pengaturan Auto-refresh untuk efek pergantian otomatis
+    st_autorefresh(interval=rotation_interval * 1000, limit=None)
 
     # Footer
     st.write(
