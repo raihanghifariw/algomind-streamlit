@@ -1,78 +1,18 @@
 import streamlit as st
-import torch
-import numpy as np
-import cv2
-from PIL import Image
-import ssl
+from sidebar import sidebar_menu
+from pages import home, data, visualisasi, demo, aboutus
 
-# Memastikan SSL untuk menghindari masalah koneksi saat download model
-ssl._create_default_https_context = ssl._create_unverified_context
+# Menggunakan sidebar untuk memilih menu
+menu = sidebar_menu()
 
-# Menggunakan cache untuk memuat model hanya sekali
-
-
-@st.cache_resource
-def load_model():
-    # Menggunakan YOLOv5 pre-trained
-    model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
-    return model
-
-# Fungsi deteksi objek pada gambar
-
-
-def detect_objects(image, model):
-    # Konversi gambar ke numpy array dan ke BGR untuk kompatibilitas OpenCV
-    img_array = np.array(image)
-    img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
-
-    # Lakukan inferensi deteksi objek
-    results = model(img_array)
-    results_img = np.squeeze(results.render())  # Render hasil pada gambar
-
-    # Konversi BGR kembali ke RGB untuk tampilan di Streamlit
-    detected_img = cv2.cvtColor(results_img, cv2.COLOR_BGR2RGB)
-    return detected_img
-
-
-# Buat main menu dropdown di sidebar
-menu = st.sidebar.selectbox(
-    "Pilih Menu:",
-    ("Demo", "Data", "Visualisasi", "Tentang")
-)
-
-if menu == "Demo":
-    st.title("YOLO Object Detection App")
-    st.write("Unggah gambar untuk melakukan deteksi objek menggunakan model YOLO.")
-
-    # File uploader
-    uploaded_file = st.file_uploader(
-        "Pilih gambar...", type=["jpg", "jpeg", "png"])
-
-    if uploaded_file is not None:
-        # Membuka gambar menggunakan PIL
-        image = Image.open(uploaded_file)
-
-        # Tampilkan gambar yang diunggah
-        st.image(image, caption="Gambar yang diunggah", use_column_width=True)
-        st.write("Memproses...")
-
-        # Muat model YOLO
-        model = load_model()
-
-        # Deteksi objek pada gambar
-        detected_img = detect_objects(image, model)
-
-        # Tampilkan hasil deteksi
-        st.image(detected_img, caption="Hasil Deteksi", use_column_width=True)
-
+# Memanggil konten berdasarkan menu yang dipilih
+if menu == "Home":
+    home.show()
 elif menu == "Data":
-    st.title("Data")
-    st.write("Halaman ini untuk menampilkan data.")
-
+    data.show()
 elif menu == "Visualisasi":
-    st.title("Visualisasi")
-    st.write("Halaman ini untuk visualisasi data.")
-
-elif menu == "Tentang":
-    st.title("Tentang")
-    st.write("Ini adalah aplikasi yang dibuat dengan Streamlit.")
+    visualisasi.show()
+elif menu == "Demo":
+    demo.show()
+elif menu == "About Us":
+    aboutus.show()
