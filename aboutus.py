@@ -20,21 +20,21 @@ def show():
         st.header("Raihan Ghifari Winata")
         # st.image(img_razi, caption="Razi", use_column_width=True)
         st.write(
-            "Connect with Razi on [LinkedIn](https://www.linkedin.com/in/raihan-ghifari-553a1a26a/)")
+            "Connect with Ghifari on [LinkedIn](https://www.linkedin.com/in/raihan-ghifari-553a1a26a/)")
 
     # Team member 2 in the second column
     with col2:
         st.header("Karina Defitrah Nurul Jinan")
         # st.image(img_fadlu, caption="Fadlu", use_column_width=True)
         st.write(
-            "Connect with Fadlu on [LinkedIn](https://www.linkedin.com/in/karina-defitrah-nurul-jinan-0520b1303/)")
+            "Connect with Karina on [LinkedIn](https://www.linkedin.com/in/karina-defitrah-nurul-jinan-0520b1303/)")
 
     # Team member 3 in the third column
     with col3:
         st.header("Yahya Alghazali Mushlih")
         # st.image(img_hekal, caption="Haikal", use_column_width=True)
         st.write(
-            "Connect with Haikal on [LinkedIn](https://www.linkedin.com/in/yahya-alghazali-mushlih-40280528b/)")
+            "Connect with Yahya on [LinkedIn](https://www.linkedin.com/in/yahya-alghazali-mushlih-40280528b/)")
 
     # Footer
     st.write(
