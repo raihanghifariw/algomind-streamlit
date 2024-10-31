@@ -1,6 +1,12 @@
 from PIL import Image
 import streamlit as st
+import json
 
+def load_team_members():
+    # Membaca data anggota tim dari file JSON
+    with open("team_members.json", "r") as file:
+        team_members = json.load(file)
+    return team_members
 
 def show():
     st.title("About Us")
