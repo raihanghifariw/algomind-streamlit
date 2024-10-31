@@ -23,7 +23,7 @@ def show():
     team_members = [
         {
             "name": "Raihan Ghifari Winata",
-            # "image": "path/to/alice.jpg",  # Ganti dengan path ke gambar Alice
+            "image": "D:/TrekAI_ICU/GitHub/algomind-streamlit/Assets/gipari.jpeg",  # Ganti dengan path ke gambar Alice
             "description": "Ghifari is a computer vision expert with a passion for deep learning. Connect with Ghifari on [LinkedIn](https://www.linkedin.com/in/raihan-ghifari-553a1a26a/)"
         },
         {
@@ -33,7 +33,7 @@ def show():
         },
         {
             "name": "Yahya Alghazali Mushlih",
-            # "image": "path/to/charlie.jpg",  # Ganti dengan path ke gambar Charlie
+            "image": "D:/TrekAI_ICU/GitHub/algomind-streamlit/Assets",  # Ganti dengan path ke gambar Charlie
             "description": "Yahya is a data scientist focused on leveraging data for impactful solutions. Connect with Yahya on [LinkedIn](https://www.linkedin.com/in/yahya-alghazali-mushlih-40280528b/)"
         },
     ]
