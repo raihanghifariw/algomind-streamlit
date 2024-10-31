@@ -14,7 +14,7 @@ menu = sidebar_menu()
 # Memanggil konten berdasarkan menu yang dipilih
 if menu == "Home":
     home.show()
-if menu == "Data":
+elif menu == "Data":
     data.show()
 elif menu == "Visualisasi":
     visualisasi.show()
