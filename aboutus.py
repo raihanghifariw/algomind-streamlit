@@ -26,7 +26,7 @@ def show():
             "description": "Ghifari is a computer vision expert with a passion for deep learning. Connect with Ghifari on [LinkedIn](https://www.linkedin.com/in/raihan-ghifari-553a1a26a/)"
         },
         {
-            "name": "Karina Defitran Nurul Jinan",
+            "name": "Karina Defitrah Nurul Jinan",
             "image": "main/assets/gipari.jpeg",
             "description": "Karina is a software engineer specializing in building scalable applications. Connect with Karina on [LinkedIn](https://www.linkedin.com/in/karina-defitrah-nurul-jinan-0520b1303/)"
         },
