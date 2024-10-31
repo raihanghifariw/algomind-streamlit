@@ -40,11 +40,18 @@ def show():
     # Get the current team member based on the index in session_state
     current_member = team_members[st.session_state['member_index']]
 
-    # Open the image using PIL and display it
-    image = Image.open(current_member['image'])
-    st.image(image, caption=current_member['name'], use_column_width=True)
-    st.subheader(current_member['name'])
-    st.write(current_member['description'])
+    # Create columns for image and description
+    col1, col2 = st.columns([1, 2])
+
+    with col1:
+        # Open and display the image in the first column
+        image = Image.open(current_member['image'])
+        st.image(image, caption=current_member['name'], use_column_width=True)
+
+    with col2:
+        # Display the member's name and description in the second column
+        st.subheader(current_member['name'])
+        st.write(current_member['description'])
 
     # Navigation buttons for Next and Previous
     col1, col2 = st.columns([1, 1])
@@ -59,7 +66,8 @@ def show():
 
     # Footer
     st.write(
-        "Thank you for visiting our page. We are excited to share our work with you!")
+        "Thank you for visiting our page. We are excited to share our work with you!"
+    )
     st.write(
         "If you have any inquiries or would like to get in touch with our team, please email us at "
         "[algominang@gmail.com]. We appreciate your interest in our mission."
@@ -75,5 +83,3 @@ def show():
     # Displaying centered text using st.markdown
     st.markdown(centered_text, unsafe_allow_html=True)
     st.markdown(centered_text2, unsafe_allow_html=True)
-
-
