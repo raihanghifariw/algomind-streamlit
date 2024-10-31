@@ -12,8 +12,8 @@ st.set_page_config(page_title="Algomind", page_icon="✨", layout="wide")
 menu = sidebar_menu()
 
 # Memanggil konten berdasarkan menu yang dipilih
-# if menu == "Home":
-#     home.show()
+if menu == "Home":
+    home.show()
 if menu == "Data":
     data.show()
 elif menu == "Visualisasi":
