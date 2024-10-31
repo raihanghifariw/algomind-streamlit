@@ -34,27 +34,45 @@ def detect_objects(image, model):
     return detected_img
 
 
-# Tampilan UI Streamlit
-st.title("YOLO Object Detection App")
-st.write("Unggah gambar untuk melakukan deteksi objek menggunakan model YOLO.")
+# Buat main menu dropdown di sidebar
+menu = st.sidebar.selectbox(
+    "Pilih Menu:",
+    ("Demo", "Data", "Visualisasi", "Tentang")
+)
 
-# File uploader
-uploaded_file = st.file_uploader(
-    "Pilih gambar...", type=["jpg", "jpeg", "png"])
+if menu == "Demo":
+    st.title("YOLO Object Detection App")
+    st.write("Unggah gambar untuk melakukan deteksi objek menggunakan model YOLO.")
 
-if uploaded_file is not None:
-    # Membuka gambar menggunakan PIL
-    image = Image.open(uploaded_file)
+    # File uploader
+    uploaded_file = st.file_uploader(
+        "Pilih gambar...", type=["jpg", "jpeg", "png"])
 
-    # Tampilkan gambar yang diunggah
-    st.image(image, caption="Gambar yang diunggah", use_column_width=True)
-    st.write("Memproses...")
+    if uploaded_file is not None:
+        # Membuka gambar menggunakan PIL
+        image = Image.open(uploaded_file)
 
-    # Muat model YOLO
-    model = load_model()
+        # Tampilkan gambar yang diunggah
+        st.image(image, caption="Gambar yang diunggah", use_column_width=True)
+        st.write("Memproses...")
 
-    # Deteksi objek pada gambar
-    detected_img = detect_objects(image, model)
+        # Muat model YOLO
+        model = load_model()
 
-    # Tampilkan hasil deteksi
-    st.image(detected_img, caption="Hasil Deteksi", use_column_width=True)
+        # Deteksi objek pada gambar
+        detected_img = detect_objects(image, model)
+
+        # Tampilkan hasil deteksi
+        st.image(detected_img, caption="Hasil Deteksi", use_column_width=True)
+
+elif menu == "Data":
+    st.title("Data")
+    st.write("Halaman ini untuk menampilkan data.")
+
+elif menu == "Visualisasi":
+    st.title("Visualisasi")
+    st.write("Halaman ini untuk visualisasi data.")
+
+elif menu == "Tentang":
+    st.title("Tentang")
+    st.write("Ini adalah aplikasi yang dibuat dengan Streamlit.")
