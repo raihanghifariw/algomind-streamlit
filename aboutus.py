@@ -36,15 +36,6 @@ def show():
         },
     ]
 
-    # Fungsi untuk menampilkan halaman About Us
-
-    st.title("About Us")
-    st.write(
-        "We are a team of three dedicated individuals working on the YOLO Object Detection project. "
-        "Our mission is to provide an efficient and user-friendly application for real-time object detection."
-    )
-
-    st.header("Meet Our Team")
 
     # Mendapatkan anggota tim saat ini berdasarkan indeks di session_state
     current_member = team_members[st.session_state['member_index']]
@@ -65,11 +56,6 @@ def show():
         if st.button("Next"):
             st.session_state['member_index'] = (
                 st.session_state['member_index'] + 1) % len(team_members)
-
-
-    # Footer
-    st.write(
-        "Thank you for visiting our page. We are excited to share our work with you!")
 
     # Footer
     st.write(
