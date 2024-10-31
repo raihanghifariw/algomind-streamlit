@@ -3,12 +3,13 @@ import streamlit as st
 import json
 import time
 
+# Inisialisasi indeks anggota tim di session_state
+if 'member_index' not in st.session_state:
+    st.session_state['member_index'] = 0
 
 def show():
 
-    # Inisialisasi indeks anggota tim di session_state
-    if 'member_index' not in st.session_state:
-        st.session_state['member_index'] = 0
+    
     st.title("About Us")
 
     st.write(
