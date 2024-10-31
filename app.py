@@ -4,6 +4,7 @@ import home
 import data
 import visualisasi
 import aboutus
+import demo
 
 st.set_page_config(page_title="Algomind", page_icon="✨", layout="wide")
 
@@ -19,3 +20,5 @@ elif menu == "Visualisasi":
     visualisasi.show()
 elif menu == "About Us":
     aboutus.show()
+elif menu == "Demo":
+    demo.show
