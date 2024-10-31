@@ -9,11 +9,6 @@ import ssl
 def show():
     st.title("Demo")
 
-    st.write(
-        "Welcome to the Object Detection app powered by YOLO. This application uses a pre-trained YOLO model "
-        "to detect objects within uploaded images, providing insights into object locations and classifications."
-    )
-
     # Memastikan SSL untuk menghindari masalah koneksi saat download model
     ssl._create_default_https_context = ssl._create_unverified_context
 
