@@ -58,8 +58,8 @@ def show():
         "contact HFR Teams at YARSI University."
     )
 
-    text = "©2024 HFR Company. All rights reserved. The content on this website is protected by copyright law."
-    text2 = "For permission requests, please contact +6287870190448."
+    text = "©2024 Algomind Company. All rights reserved. The content on this website is protected by copyright law."
+    text2 = "For permission requests, please contact algomind@gmail.com."
 
     # Using HTML tags for text alignment
     centered_text = f"<p style='text-align:center'>{text}</p>"
