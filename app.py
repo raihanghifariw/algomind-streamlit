@@ -5,6 +5,9 @@ import demo
 import data
 import visualisasi
 import aboutus
+
+st.set_page_config(page_title="Algomind", page_icon="✨", layout="wide")
+
 # Menggunakan sidebar untuk memilih menu
 menu = sidebar_menu()
 
