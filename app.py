@@ -16,7 +16,7 @@ elif menu == "Data":
     data.show()
 elif menu == "Visualisasi":
     visualisasi.show()
-elif menu == "Demo":
-    demo.show()
+# elif menu == "Demo":
+#     demo.show()
 elif menu == "About Us":
     aboutus.show()
