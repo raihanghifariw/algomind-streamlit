@@ -3,46 +3,56 @@ import streamlit as st
 
 
 def show():
-    # Page title
     st.title("About Us")
-    # img_razi = Image.open("main/assets/razi.png")
-    # img_hekal = Image.open("main/assets/hekal.png")
-    # img_fadlu = Image.open("main/assets/fadlu.png")
+
     st.write(
-        "Welcome to the 'About Us' page. Get to know the individuals behind the Sepvisor."
+        "We are a Algomind team of three dedicated individuals working on the YOLO Object Detection project. "
+        "Our mission is to provide an efficient and user-friendly application for real-time object detection."
     )
 
-    # Using st.columns to create three columns
-    col1, col2, col3 = st.columns(3)
+    # Gambar anggota kelompok
+    st.header("Meet Our Team")
 
-    # Team member 1 in the first column
-    with col1:
-        st.header("Raihan Ghifari Winata")
-        # st.image(img_razi, caption="Razi", use_column_width=True)
-        st.write(
-            "Connect with Ghifari on [LinkedIn](https://www.linkedin.com/in/raihan-ghifari-553a1a26a/)")
+    # Daftar anggota tim
+    team_members = [
+        {
+            "name": "Raihan Ghifari Winata",
+            # "image": "path/to/alice.jpg",  # Ganti dengan path ke gambar Alice
+            "description": "Ghifari is a computer vision expert with a passion for deep learning. Connect with Ghifari on [LinkedIn](https://www.linkedin.com/in/raihan-ghifari-553a1a26a/)"
+        },
+        {
+            "name": "Karina Defitran Nurul Jinan",
+            # "image": "path/to/bob.jpg",  # Ganti dengan path ke gambar Bob
+            "description": "Karina is a software engineer specializing in building scalable applications. Connect with Karina on [LinkedIn](https://www.linkedin.com/in/karina-defitrah-nurul-jinan-0520b1303/)"
+        },
+        {
+            "name": "Yahya Alghazali Mushlih",
+            # "image": "path/to/charlie.jpg",  # Ganti dengan path ke gambar Charlie
+            "description": "Yahya is a data scientist focused on leveraging data for impactful solutions. Connect with Yahya on [LinkedIn](https://www.linkedin.com/in/yahya-alghazali-mushlih-40280528b/)"
+        },
+    ]
 
-    # Team member 2 in the second column
-    with col2:
-        st.header("Karina Defitrah Nurul Jinan")
-        # st.image(img_fadlu, caption="Fadlu", use_column_width=True)
-        st.write(
-            "Connect with Karina on [LinkedIn](https://www.linkedin.com/in/karina-defitrah-nurul-jinan-0520b1303/)")
+    # Slider untuk menampilkan anggota tim
+    member_names = [member['name'] for member in team_members]
+    selected_member = st.selectbox("Select a team member:", member_names)
 
-    # Team member 3 in the third column
-    with col3:
-        st.header("Yahya Alghazali Mushlih")
-        # st.image(img_hekal, caption="Haikal", use_column_width=True)
-        st.write(
-            "Connect with Yahya on [LinkedIn](https://www.linkedin.com/in/yahya-alghazali-mushlih-40280528b/)")
+    # Menampilkan informasi tentang anggota yang dipilih
+    for member in team_members:
+        if member['name'] == selected_member:
+            st.image(member['image'], caption=member['name'],
+                     use_column_width=True)
+            st.write(member['description'])
 
     # Footer
+    st.write(
+        "Thank you for visiting our page. We are excited to share our work with you!")
+
     st.write(
         "If you have any inquiries or would like to get in touch with our team, please email us at "
         "[algominang@gmail.com]. We appreciate your interest in our mission."
     )
 
-    text = "©2024 Algomins Company. All rights reserved. The content on this website is protected by copyright law."
+    text = "©2024 Algomind Company. All rights reserved. The content on this website is protected by copyright law."
     text2 = "For permission requests, please contact us."
 
     # Using HTML tags for text alignment
