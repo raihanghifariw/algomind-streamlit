@@ -39,8 +39,8 @@ def show():
     # Menampilkan informasi tentang anggota yang dipilih
     for member in team_members:
         if member['name'] == selected_member:
-            st.image(member['image'], caption=member['name'],
-                     use_column_width=True)
+            # st.image(member['image'], caption=member['name'],
+            #          use_column_width=True)
             st.write(member['description'])
 
     # Footer
