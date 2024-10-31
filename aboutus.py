@@ -52,7 +52,8 @@ def show():
     current_member = team_members[current_index]
 
     # Menampilkan informasi anggota tim saat ini
-    st.image(caption=current_member['name'], use_column_width=True)
+    # st.image(current_member['image'],
+    #          caption=current_member['name'], use_column_width=True)
     st.subheader(current_member['name'])
     st.write(current_member['description'])
 
