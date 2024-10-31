@@ -41,23 +41,18 @@ def show():
     current_member = team_members[st.session_state['member_index']]
 
     # Open the image using PIL and display it
-    
+    image = Image.open(current_member['image'])
+    st.image(image, caption=current_member['name'], use_column_width=True)
+    st.subheader(current_member['name'])
+    st.write(current_member['description'])
 
     # Navigation buttons for Next and Previous
     col1, col2 = st.columns([1, 1])
     with col1:
-        image = Image.open(current_member['image'])
-        st.image(image, caption=current_member['name'], use_column_width=True)
-        st.subheader(current_member['name'])
-        st.write(current_member['description'])
         if st.button("Previous"):
             st.session_state['member_index'] = (
                 st.session_state['member_index'] - 1) % len(team_members)
     with col2:
-        image = Image.open(current_member['image'])
-        st.image(image, caption=current_member['name'], use_column_width=True)
-        st.subheader(current_member['name'])
-        st.write(current_member['description'])
         if st.button("Next"):
             st.session_state['member_index'] = (
                 st.session_state['member_index'] + 1) % len(team_members)
