@@ -29,7 +29,7 @@ def show():
         },
         {
             "name": "Karina Defitran Nurul Jinan",
-            # "image": "path/to/bob.jpg",  # Ganti dengan path ke gambar Bob
+            "image": "D:/TrekAI_ICU/GitHub/algomind-streamlit/Assets/gipari.jpeg",  # Ganti dengan path ke gambar Bob
             "description": "Karina is a software engineer specializing in building scalable applications. Connect with Karina on [LinkedIn](https://www.linkedin.com/in/karina-defitrah-nurul-jinan-0520b1303/)"
         },
         {
