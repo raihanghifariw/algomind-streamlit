@@ -3,7 +3,9 @@ import streamlit as st
 import json
 import time
 
-
+# Inisialisasi indeks anggota tim di session_state
+if 'member_index' not in st.session_state:
+    st.session_state['member_index'] = 0
 def show():
     st.title("About Us")
 
@@ -44,12 +46,8 @@ def show():
 
     st.header("Meet Our Team")
 
-    # Interval waktu dalam detik untuk rotasi otomatis
-    rotation_interval = 5
-
-    # Dapatkan indeks anggota tim saat ini berdasarkan waktu
-    current_index = int(time.time() // rotation_interval) % len(team_members)
-    current_member = team_members[current_index]
+    # Mendapatkan anggota tim saat ini berdasarkan indeks di session_state
+    current_member = team_members[st.session_state['member_index']]
 
     # Menampilkan informasi anggota tim saat ini
     # st.image(current_member['image'],
@@ -57,13 +55,21 @@ def show():
     st.subheader(current_member['name'])
     st.write(current_member['description'])
 
+    # Tombol navigasi Next dan Previous
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        if st.button("Previous"):
+            st.session_state['member_index'] = (
+                st.session_state['member_index'] - 1) % len(team_members)
+    with col2:
+        if st.button("Next"):
+            st.session_state['member_index'] = (
+                st.session_state['member_index'] + 1) % len(team_members)
+
+
     # Footer
     st.write(
         "Thank you for visiting our page. We are excited to share our work with you!")
-
-
-    # Pengaturan Auto-refresh untuk efek pergantian otomatis
-    st_autorefresh(interval=rotation_interval * 1000, limit=None)
 
     # Footer
     st.write(
@@ -84,3 +90,4 @@ def show():
     # Displaying centered text using st.markdown
     st.markdown(centered_text, unsafe_allow_html=True)
     st.markdown(centered_text2, unsafe_allow_html=True)
+
