@@ -10,12 +10,11 @@ def show():
     # Memastikan SSL untuk menghindari masalah koneksi saat download model
     ssl._create_default_https_context = ssl._create_unverified_context
 
-
     @st.cache_resource
     def load_model():
-        model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
+        model = torch.hub.load('ultralytics/yolov5',
+                               'yolov5s', pretrained=True)
         return model
-
 
     def detect_objects(image, model):
         img_array = np.array(image)
