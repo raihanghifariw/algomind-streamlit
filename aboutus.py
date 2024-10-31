@@ -77,5 +77,3 @@ def show():
     st.markdown(centered_text2, unsafe_allow_html=True)
 
 
-# Call the function to display the page
-show()
