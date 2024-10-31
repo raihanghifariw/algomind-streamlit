@@ -1,6 +1,10 @@
 import streamlit as st
 from sidebar import sidebar_menu
-from pages import home, data, visualisasi, demo, aboutus
+import home
+import data
+import visualisasi
+import demo
+import aboutus
 
 # Menggunakan sidebar untuk memilih menu
 menu = sidebar_menu()
