@@ -41,25 +41,27 @@ def show():
     current_member = team_members[st.session_state['member_index']]
 
     # Create columns for image and description
-    col1, col2 = st.columns([1, 2])
+    # col1, col2 = st.columns([1, 2])
 
-    with col1:
-        # Open and display the image in the first column
-        image = Image.open(current_member['image'])
-        st.image(image, caption=current_member['name'], use_column_width=True)
+    # with col1:
+    #     # Open and display the image in the first column
+    #     image = Image.open(current_member['image'])
+    #     st.image(image, caption=current_member['name'], use_column_width=True)
 
-    with col2:
-        # Display the member's name and description in the second column
-        st.subheader(current_member['name'])
-        st.write(current_member['description'])
+    st.subheader(current_member['name'])
+    st.write(current_member['description'])
 
     # Navigation buttons for Next and Previous
-    col1, col2 = st.columns([1, 1])
+    col1, col2, col3 = st.columns(3)
     with col1:
         if st.button("Previous"):
             st.session_state['member_index'] = (
                 st.session_state['member_index'] - 1) % len(team_members)
     with col2:
+        # Open and display the image in the first column
+        image = Image.open(current_member['image'])
+        st.image(image, caption=current_member['name'], use_column_width=True)
+    with col3:
         if st.button("Next"):
             st.session_state['member_index'] = (
                 st.session_state['member_index'] + 1) % len(team_members)
