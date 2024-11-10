@@ -1,40 +1,68 @@
 import streamlit as st
-import torch
-import numpy as np
-import cv2
-from PIL import Image
-import ssl
+import pickle
 
-# Memastikan SSL untuk menghindari masalah koneksi saat download model
-ssl._create_default_https_context = ssl._create_unverified_context
+# Direktori file pickle
+exportdir = 'D:/TrekAI_ICU/'
 
-@st.cache_resource
-def load_model():
-    model = torch.hub.load('ultralytics/yolov5',
-                        'yolov5s', pretrained=True)
-    return model
+# Fungsi untuk memuat model dan data dari file pickle
 
-def detect_objects(image, model):
-    img_array = np.array(image)
-    img_array = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
-    results = model(img_array)
-    results_img = np.squeeze(results.render())
-    detected_img = cv2.cvtColor(results_img, cv2.COLOR_BGR2RGB)
-    return detected_img
 
-def show():
-   
-    st.title("YOLO Object Detection App")
-    st.write("Unggah gambar untuk melakukan deteksi objek menggunakan model YOLO.")
+@st.cache(allow_output_mutation=True)
+def load_models():
+    with open(exportdir + 'bestpol.pkl', 'rb') as file:
+        modl = pickle.load(file)
+        Qon = pickle.load(file)
+        physpol = pickle.load(file)
+        transitionr = pickle.load(file)
+        transitionr2 = pickle.load(file)
+        R = pickle.load(file)
+        C = pickle.load(file)
+        train = pickle.load(file)
+        qldata3train = pickle.load(file)
+        qldata3test = pickle.load(file)
 
-    uploaded_file = st.file_uploader(
-        "Pilih gambar...", type=["jpg", "jpeg", "png"])
+    with open(exportdir + 'step_5_start.pkl', 'rb') as file:
+        MIMICzs = pickle.load(file)
+        actionbloc = pickle.load(file)
+        reformat5 = pickle.load(file)
+        recqvi = pickle.load(file)
 
-    if uploaded_file is not None:
-        image = Image.open(uploaded_file)
-        st.image(image, caption="Gambar yang diunggah", use_column_width=True)
-        st.write("Memproses...")
+    return {
+        'modl': modl,
+        'Qon': Qon,
+        'physpol': physpol,
+        'transitionr': transitionr,
+        'transitionr2': transitionr2,
+        'R': R,
+        'C': C,
+        'train': train,
+        'qldata3train': qldata3train,
+        'qldata3test': qldata3test,
+        'MIMICzs': MIMICzs,
+        'actionbloc': actionbloc,
+        'reformat5': reformat5,
+        'recqvi': recqvi
+    }
 
-        model = load_model()
-        detected_img = detect_objects(image, model)
-        st.image(detected_img, caption="Hasil Deteksi", use_column_width=True)
+
+# Load model dan policy
+model_data = load_models()
+
+# Membuat input untuk icustayid
+st.title("Demo Rekomendasi Perawatan Pasien")
+icustayid = st.text_input("Masukkan ICUSTAYID:")
+
+# Fungsi dummy untuk menghasilkan rekomendasi, bisa diganti dengan logika rekomendasi yang Anda punya
+
+
+def get_rekomendasi(icustayid, model_data):
+    # Gunakan `icustayid` dan `model_data` untuk menghasilkan rekomendasi berdasarkan model
+    # Contoh sederhana:
+    rekomendasi = f"Rekomendasi perawatan untuk ICUSTAYID {icustayid} berdasarkan model."
+    return rekomendasi
+
+
+# Menampilkan rekomendasi jika icustayid telah dimasukkan
+if icustayid:
+    rekomendasi = get_rekomendasi(icustayid, model_data)
+    st.write(rekomendasi)
