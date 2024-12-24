@@ -120,7 +120,7 @@ from WD3QNE_deepQnet import WD3QNE
 DATA_PATH = "main/data/"
 AGENT_ACTIONS_FILE = DATA_PATH + "/WD3QNE-algorithm/agent_actionsb.npy"
 PHYS_ACTIONS_FILE = DATA_PATH + "/WD3QNE-algorithm/phys_actionsb.npy"
-CSV_FILE = DATA_PATH + "/WD3QNE-algorithm/rl_test_data_final_cont.csv"
+CSV_FILE = DATA_PATH + "/rl_test_data_final_cont_new.csv"
 MODEL_FILE = DATA_PATH + "/WD3QNE-algorithm/dist_noW100.pt"
 
 # Load data and predictions
@@ -148,7 +148,7 @@ model = load_model(MODEL_FILE, state_dim, n_actions, ensemble_size)
 # Page title
 st.title("WD3QNE Action Prediction Demo")
 st.divider()
-st.sidebar.image("main/assets/sepvisor.jpeg")  # Update with your logo path
+# st.sidebar.image("main/assets/sepvisor.jpeg")  # Update with your logo path
 
 # Introduction
 st.write("This page demonstrates the WD3QNE model for predicting actions based on ICU patient data.")
