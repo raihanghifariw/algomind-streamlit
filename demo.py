@@ -270,6 +270,7 @@ def show():
     pair_of_act = list(product(doses_intensity, repeat=2))
 
     for i in save_indexes:
+        st.text(f"Dose Intensity After {(i+1)*4} Hour")
         phys_act.append(pair_of_act[phys_actions[i]])
         ai_act.append(pair_of_act[agent_actions[i]])
 
