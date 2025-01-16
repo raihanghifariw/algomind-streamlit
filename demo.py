@@ -447,14 +447,14 @@ def show():
             plt.close()
 
         time.sleep(0.5)
-
-    # Treatment Recommendation
-    st.subheader("Dose Intensity Recommendation for the Patient")
+    # if st.button("Predict"):
+    # # Treatment Recommendation
+    st.subheader("Dose Intensity Recommendation for the Patients")
     phys_act, ai_act = [], []
     doses_intensity = ["Zero", "Low", "Medium", "High", "Very High"]
     pair_of_act = list(product(doses_intensity, repeat=2))
 
-    for i in save_indexes:
+    for i in range(len(save_indexes)):
         st.text(f"Dose Intensity After {(i+1)*4} Hour")
         phys_act.append(pair_of_act[phys_actions[i]])
         ai_act.append(pair_of_act[agent_actions[i]])
