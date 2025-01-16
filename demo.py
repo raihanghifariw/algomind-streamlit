@@ -8,6 +8,10 @@ import os
 import time
 from itertools import product
 import torch
+
+# =========================== small function===============================
+from scipy.stats import zscore, rankdata
+
 from matplotlib.animation import FuncAnimation
 from WD3QNE_deepQnet import WD3QNE  
 from WD3QNE_evaluate import do_eval, do_test
@@ -184,6 +188,9 @@ from WD3QNE_evaluate import do_eval, do_test
 def show():
     # =================Load model for deployment==================
 
+
+    def my_zscore(x):
+        return zscore(x, ddof=1), np.mean(x, axis=0), np.std(x, axis=0, ddof=1)
     def load_model(model_path, state_dim, num_actions):
         if not os.path.exists(model_path):
             raise FileNotFoundError(f"Model file not found: {model_path}")
@@ -218,6 +225,26 @@ def show():
     data = pd.read_csv(CSV_FILE)
     agent_actions = np.load(AGENT_ACTIONS_FILE)
     phys_actions = np.load(PHYS_ACTIONS_FILE)
+    icustayidlist = data['icustayid']
+    # list of unique icustayids from MIMIC unique icustayid list
+    icuuniqueids = np.unique(icustayidlist)
+    reformat5 = data.values.copy()
+    print('####  generated state  ####')
+
+    # -----------------------Filtered features = 37--------------------------------
+    colnorm = ['SOFA', 'age', 'Weight_kg', 'GCS', 'HR', 'SysBP', 'MeanBP', 'DiaBP', 'RR', 'Temp_C',
+               'Sodium', 'Chloride', 'Glucose', 'Calcium', 'Hb', 'WBC_count', 'Platelets_count',
+               'PTT', 'PT', 'Arterial_pH', 'paO2', 'paCO2', 'HCO3', 'Arterial_lactate', 'Shock_Index',
+               'PaO2_FiO2', 'cumulated_balance', 'CO2_mEqL', 'Ionised_Ca']
+    # 8个指标
+    collog = ['SpO2', 'BUN', 'Creatinine', 'SGOT',
+              'Total_bili', 'INR', 'input_total', 'output_total']
+
+    colnorm = np.where(np.isin(data.columns, colnorm))[0]
+    collog = np.where(np.isin(data.columns, collog))[0]
+
+    scaleMIMIC = np.concatenate([zscore(reformat5[:, colnorm], ddof=1),
+                                 zscore(np.log(0.1 + reformat5[:, collog]), ddof=1)], axis=1)
 
     # Load model
     state_dim = 37  # Adjust to match model configuration
@@ -231,9 +258,9 @@ def show():
         "This page demonstrates the WD3QNE model for predicting actions based on ICU patient data.")
 
     # Select Patient ID
-    options = data['icustayid'].unique()
+    options = scaleMIMIC['icustayid'].unique()
     selected_option = st.selectbox("Select a Patient ID:", options)
-    save_indexes = data[data['icustayid'] == selected_option].index.tolist()
+    save_indexes = scaleMIMIC[scaleMIMIC['icustayid'] == selected_option].index.tolist()
     st.write(f"You selected: {selected_option}")
     st.divider()
 
