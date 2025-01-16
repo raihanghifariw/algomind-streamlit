@@ -2,7 +2,6 @@ import streamlit as st
 from sidebar import sidebar_menu
 import home
 import data
-import visualisasi
 import aboutus
 import demo
 
@@ -17,8 +16,6 @@ if menu == "Home":
     home.show()
 elif menu == "Data":
     data.show()
-elif menu == "Visualisasi":
-    visualisasi.show()
 elif menu == "Demo":
     demo.show()
 elif menu == "About Us":
