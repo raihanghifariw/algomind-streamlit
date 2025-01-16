@@ -411,10 +411,10 @@ def show():
     model = load_model(MODEL_FILE, state_dim, n_actions)
 
     # Streamlit Page Configuration
-    st.title("WD3QNE Action Prediction Demo")
+    st.title("EWD3QN Action Prediction Demo")
     st.divider()
     st.write(
-        "This page demonstrates the WD3QNE model for predicting actions based on ICU patient data.")
+        "This page demonstrates the EWD3QN model for predicting actions based on ICU patient data.")
 
     # Select Patient ID
     options = data['icustayid'].unique()
