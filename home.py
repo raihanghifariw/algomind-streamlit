@@ -68,15 +68,6 @@ def show():
         - **Advanced Support**: In severe cases, oxygen therapy or organ support may be required.
         """)
 
-
-    # Instructions
-    st.header("Instructions")
-    st.write(
-        "To use this app, simply upload an image in JPG, JPEG, or PNG format. The app will process the image and "
-        "display the detected objects with bounding boxes and labels. Please ensure that images are clear and contain "
-        "objects in well-lit conditions for the best results."
-    )
-
     # Additional resources or links
     st.header("Additional Resources")
     st.write(
